@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>متجر كماليات اثار / شارع40 - عالم العناية والتجميل</title>
+    <title>متجر كماليات اثار / شارع 40 - عالم العناية والتجميل</title>
  
     <!-- تسريع الاتصال بالخدمات الخارجية -->
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
@@ -28,8 +28,24 @@
     <noscript>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap">
     </noscript>
     <style>
+        /* خط أنيق خاص بقسم إضافة/تعديل المنتجات فقط */
+        #product-form {
+            font-family: 'Tajawal', 'Cairo', 'Segoe UI', Tahoma, Arial, sans-serif;
+        }
+        #product-form label,
+        #product-form input,
+        #product-form select,
+        #product-form textarea,
+        #product-form button {
+            font-family: inherit;
+        }
+        #product-form-title {
+            font-family: 'Tajawal', 'Cairo', 'Segoe UI', Tahoma, Arial, sans-serif;
+        }
+
         html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
         body { font-family: 'Cairo', 'Segoe UI', Tahoma, Arial, sans-serif; background-color: #fffafb; color: #44383a; }
         body.no-scroll { overflow: hidden; }
@@ -93,10 +109,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div id="store-logo-container" class="flex items-center gap-3 cursor-pointer select-none transition-all duration-200 active:scale-95" onclick="goToHome()" title="انقر مرتين للوصول للوحة التحكم">
                 <div class="w-12 h-12 rounded-2xl bg-pink-100 flex items-center justify-center overflow-hidden border border-pink-200 shadow-sm">
-                    <img id="store-logo-img" width="48" height="48" decoding="async" onerror="imgErr(this,'logo')" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23fce7f3'/><text x='50%' y='55%' font-family='Arial' font-weight='bold' font-size='28' fill='%23db2777' text-anchor='middle' dominant-baseline='middle'>آثار</text></svg>" alt="شعار كماليات اثار / شارع40" class="w-full h-full object-cover">
+                    <img id="store-logo-img" width="48" height="48" decoding="async" onerror="imgErr(this,'logo')" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23fce7f3'/><text x='50%' y='55%' font-family='Arial' font-weight='bold' font-size='28' fill='%23db2777' text-anchor='middle' dominant-baseline='middle'>آثار</text></svg>" alt="شعار كماليات اثار / شارع 40" class="w-full h-full object-cover">
                 </div>
                 <div>
-                    <h1 class="text-xl font-black text-stone-900 tracking-tight">كماليات اثار / شارع40</h1>
+                    <h1 class="text-xl font-black text-stone-900 tracking-tight">كماليات اثار / شارع 40</h1>
                     <p class="text-xs text-pink-600 font-semibold">عالم العناية والتجميل الأصلي</p>
                 </div>
             </div>
@@ -166,9 +182,9 @@
  
     <footer class="bg-white border-t border-pink-100 mt-16 py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h3 class="text-lg font-black text-stone-900">كماليات اثار / شارع40</h3>
+            <h3 class="text-lg font-black text-stone-900">كماليات اثار / شارع 40</h3>
             <p class="text-stone-500 text-sm mt-1">وجهتك الأولى لكل ما تحتاجه العناية والجمال الرائع.</p>
-            <p class="text-xs text-stone-400 mt-4">&copy; 2026 جميع الحقوق محفوظة لمتجر كماليات اثار / شارع40.</p>
+            <p class="text-xs text-stone-400 mt-4">&copy; 2026 جميع الحقوق محفوظة لمتجر كماليات اثار / شارع 40.</p>
         </div>
     </footer>
  
@@ -285,7 +301,7 @@
             <div class="p-5 border-b border-stone-200 flex items-center justify-between bg-stone-900 text-white">
                 <div class="flex items-center gap-3">
                     <i class="fa-solid fa-sliders text-pink-400 text-xl"></i>
-                    <h3 class="text-lg font-black">لوحة تحكم كماليات اثار / شارع40</h3>
+                    <h3 class="text-lg font-black">لوحة تحكم كماليات اثار / شارع 40</h3>
                 </div>
                 <button onclick="closeAdminDashboard()" class="w-9 h-9 bg-stone-800 hover:bg-stone-700 text-white rounded-full flex items-center justify-center">
                     <i class="fa-solid fa-xmark"></i>
@@ -306,29 +322,12 @@
                         </h4>
                         <form id="product-form" onsubmit="saveProduct(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                             <input type="hidden" id="edit-product-id">
-                            <div>
-                                <label class="block text-xs font-bold text-stone-700 mb-1">اسم المنتج:</label>
-                                <input type="text" id="p-name" class="w-full px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm" required>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-stone-700 mb-1">التصنيف:</label>
-                                <select id="p-category" onchange="fillAdminSubSelect()" class="w-full px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm" required>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-stone-700 mb-1">التصنيف الفرعي (اختياري):</label>
-                                <select id="p-subcategory" class="w-full px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm">
-                                    <option value="">بدون تصنيف فرعي</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-bold text-stone-700 mb-1">السعر (د.ع):</label>
-                                <input type="number" id="p-price" class="w-full px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm" required>
-                            </div>
+
+                            <!-- صورة المنتج أولاً -->
                             <div class="sm:col-span-2 lg:col-span-3">
                                 <label class="block text-xs font-bold text-stone-700 mb-1">صورة المنتج:</label>
                                 <div class="flex flex-col sm:flex-row gap-3 items-start">
-                                    <div class="shrink-0 relative w-20 h-20 rounded-xl overflow-hidden bg-stone-100 border border-stone-200 flex items-center justify-center">
+                                    <div class="shrink-0 relative w-36 h-36 sm:w-40 sm:h-40 rounded-2xl overflow-hidden bg-stone-100 border border-stone-200 flex items-center justify-center shadow-sm">
                                         <img id="p-image-preview" src="" class="hidden w-full h-full object-contain">
                                         <i id="p-image-preview-icon" class="fa-solid fa-image text-stone-300 text-2xl"></i>
                                         <div id="p-image-uploading" class="hidden absolute inset-0 bg-white/70 flex items-center justify-center">
@@ -337,18 +336,48 @@
                                     </div>
                                     <div class="flex-grow w-full space-y-2">
                                         <label class="w-full flex items-center justify-center gap-2 bg-white border border-dashed border-pink-300 hover:bg-pink-50 text-pink-700 font-bold text-xs py-2.5 rounded-xl cursor-pointer transition-all active:scale-95">
-                                            <i class="fa-solid fa-cloud-arrow-up"></i> رفع الصورة إلى Firebase Storage
+                                            <i class="fa-solid fa-cloud-arrow-up"></i> رفع الصورة إلى Cloudinary
                                             <input type="file" id="p-image-file" accept="image/*" class="hidden" onchange="handleImageFileSelect(event)">
                                         </label>
                                         <input type="hidden" id="p-image" value="">
-                                        <p class="text-[11px] text-stone-400">الصورة تُرفع إلى Firebase Storage، ويُحفظ رابطها فقط داخل Firestore. لا يتم حفظ Base64 في المنتج الجديد.</p>
+                                        <p class="text-[11px] text-stone-400">الصورة تُرفع مباشرة إلى Cloudinary، ويُحفظ رابطها فقط داخل Firestore.</p>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- اسم المنتج ثانياً -->
+                            <div class="sm:col-span-2 lg:col-span-3">
+                                <label class="block text-sm font-black text-stone-800 mb-1.5" style="font-family:'Tajawal',sans-serif">اسم المنتج:</label>
+                                <input type="text" id="p-name" class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl text-base font-bold" style="font-family:'Cairo',sans-serif" required>
+                            </div>
+
+                            <!-- وصف المنتج ثالثاً -->
                             <div class="sm:col-span-2 lg:col-span-3">
                                 <label class="block text-xs font-bold text-stone-700 mb-1">وصف المنتج:</label>
-                                <input type="text" id="p-desc" placeholder="وصف موجز للمنتج ومميزاته..." class="w-full px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm">
+                                <input type="text" id="p-desc" placeholder="وصف موجز للمنتج ومميزاته..." class="w-full px-4 py-3 bg-stone-50 border border-stone-200 rounded-xl text-base font-bold" style="font-family:'Cairo',sans-serif" required>
                             </div>
+
+                            <!-- التصنيف رابعاً -->
+                            <div>
+                                <label class="block text-xs font-bold text-stone-700 mb-1">التصنيف:</label>
+                                <select id="p-category" onchange="fillAdminSubSelect()" class="w-full px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm" required>
+                                </select>
+                            </div>
+
+                            <!-- التصنيف الفرعي خامساً -->
+                            <div>
+                                <label class="block text-xs font-bold text-stone-700 mb-1">التصنيف الفرعي:</label>
+                                <select id="p-subcategory" class="w-full px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm">
+                                    <option value="">بدون تصنيف فرعي</option>
+                                </select>
+                            </div>
+
+                            <!-- السعر بعد الحقول المطلوبة -->
+                            <div>
+                                <label class="block text-xs font-bold text-stone-700 mb-1">السعر (د.ع):</label>
+                                <input type="text" id="p-price" inputmode="numeric" autocomplete="off" class="w-full px-3.5 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm" required placeholder="مثال: 25,000">
+                            </div>
+
                             <div class="sm:col-span-3 flex gap-3 mt-2">
                                 <button type="submit" class="bg-pink-600 hover:bg-pink-700 disabled:opacity-60 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow">حفظ المنتج</button>
                                 <button type="button" id="cancel-edit-btn" onclick="resetProductForm()" class="hidden bg-stone-200 hover:bg-stone-300 text-stone-700 px-5 py-2.5 rounded-xl font-bold text-sm">إلغاء التعديل</button>
@@ -395,7 +424,7 @@
                                 <input type="hidden" id="cat-image-input" value="">
                                 <div class="mt-2 flex items-center gap-2">
                                     <img id="cat-image-preview" src="" class="hidden w-12 h-12 rounded-xl object-cover border border-stone-200 bg-stone-50">
-                                    <span id="cat-image-status" class="text-[11px] text-stone-400">سيتم رفع الصورة إلى Firebase Storage.</span>
+                                    <span id="cat-image-status" class="text-[11px] text-stone-400">سيتم رفع الصورة إلى Cloudinary.</span>
                                 </div>
                             </div>
                             <div class="sm:col-span-2">
@@ -477,13 +506,13 @@
                             <div>
                                 <label class="block text-xs font-bold text-stone-700 mb-1">رفع شعار المتجر:</label>
                                 <label class="w-full flex items-center justify-center gap-2 bg-white border border-dashed border-pink-300 hover:bg-pink-50 text-pink-700 font-bold text-xs py-2.5 rounded-xl cursor-pointer transition-all active:scale-95">
-                                    <i class="fa-solid fa-cloud-arrow-up"></i> اختيار ورفع الشعار إلى Firebase Storage
+                                    <i class="fa-solid fa-cloud-arrow-up"></i> اختيار ورفع الشعار إلى Cloudinary
                                     <input type="file" id="store-logo-file" accept="image/*" class="hidden" onchange="handleStoreLogoFileSelect(event)">
                                 </label>
                                 <input type="hidden" id="store-logo-url-input" value="">
                                 <div class="mt-2 flex items-center gap-2">
                                     <img id="store-logo-upload-preview" src="" class="hidden w-14 h-14 rounded-2xl object-contain border border-stone-200 bg-stone-50">
-                                    <span id="store-logo-status" class="text-[11px] text-stone-400">الصورة ستُرفع إلى Firebase Storage ويُحفظ الرابط في إعدادات المتجر.</span>
+                                    <span id="store-logo-status" class="text-[11px] text-stone-400">الصورة ستُرفع إلى Cloudinary ويُحفظ الرابط في إعدادات المتجر.</span>
                                 </div>
                             </div>
                             <button onclick="updateStoreLogo()" class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow">حفظ الشعار</button>
@@ -493,7 +522,7 @@
                         <h4 class="text-base font-black text-stone-900 mb-2 flex items-center gap-2">
                             <i class="fa-solid fa-stethoscope text-pink-600"></i> فحص الاتصال بقاعدة البيانات
                         </h4>
-                        <p class="text-xs text-stone-500 mb-4 max-w-xl">يفحص: الدخول المجهول، قراءة المنتجات من السيرفر، صلاحية الكتابة والحذف، وتجهيز Firebase Storage لرفع الصور.</p>
+                        <p class="text-xs text-stone-500 mb-4 max-w-xl">يفحص: الدخول المجهول، قراءة المنتجات من السيرفر، صلاحية الكتابة والحذف، وتجهيز اتصال Firebase وحفظ روابط صور Cloudinary.</p>
                         <button onclick="runDiagnostics(this)" class="bg-stone-900 hover:bg-stone-800 text-white px-6 py-2.5 rounded-xl font-bold text-sm shadow">ابدأ الفحص</button>
                     </div>
                 </div>
@@ -521,15 +550,42 @@
     <script>
         /* ================= الإعدادات والأدوات ================= */
         // إعدادات مشروع فايربيس الجديد (athar-e00bf)
-        const firebaseConfig = {
-            apiKey: "AIzaSyBOeBszexRWhAOC80ixGiWZseRX4ks_ipQ",
-            authDomain: "athar-e00bf.firebaseapp.com",
-            projectId: "athar-e00bf",
-            storageBucket: "athar-e00bf.firebasestorage.app",
-            messagingSenderId: "264890265095",
-            appId: "1:264890265095:web:24e706e7e5fa8570d044a2",
-            measurementId: "G-2FMK3EBME5"
-        };
+        
+          
+const firebaseConfig = {
+  apiKey: "AIzaSyAx8nsfuEYn_tk9i-Wsqfu8Z2cqbUU9_OY",
+  authDomain: "athar3-1a894.firebaseapp.com",
+  projectId: "athar3-1a894",
+  storageBucket: "athar3-1a894.firebasestorage.app",
+  messagingSenderId: "151167824114",
+  appId: "1:151167824114:web:e671b879939294d501a06b",
+  measurementId: "G-87PKL941RP"
+};
+<script type="module">
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+apiKey: "AIzaSyAx8nsfuEYn_tk9i-Wsqfu8Z2cqbUU9_OY",
+authDomain: "athar3-1a894.firebaseapp.com",
+projectId: "athar3-1a894",
+storageBucket: "athar3-1a894.firebasestorage.app",
+messagingSenderId: "151167824114",
+appId: "1:151167824114:web:e671b879939294d501a06b",
+measurementId: "G-87PKL941RP"
+};
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+</script>
+        // Cloudinary: رفع الصور مباشرة من جهاز المستخدم بدون Firebase Storage
+        const CLOUDINARY_CLOUD_NAME = "dnqgbond";
+        const CLOUDINARY_UPLOAD_PRESET = "athar_upload";
+        const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
  
         const $ = (id) => document.getElementById(id);
         const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -548,7 +604,7 @@
         const defaultLogo = makeSvg('آثار', 100, 28);
         const svgProd1 = makeSvg('سيروم فيتامين C');
         const svgProd2 = makeSvg('أحمر شفاه مات');
-        const svgFallback = makeSvg('كماليات اثار / شارع40');
+        const svgFallback = makeSvg('كماليات اثار / شارع 40');
  
         function imgErr(img, kind) {
             img.onerror = null;
@@ -695,8 +751,11 @@
             const prev = sel.value;
             const opts = categories.filter((c) => c.name !== 'الكل')
                 .map((c) => `<option value="${esc(c.name)}">${esc(c.name)}</option>`).join('');
-            sel.innerHTML = opts || '<option value="">— أضيفي تصنيفاً أولاً من تبويب إدارة التصنيفات —</option>';
-            if (prev) sel.value = prev;
+            sel.innerHTML = opts
+                ? '<option value="">اختر التصنيف</option>' + opts
+                : '<option value="">— أضيفي تصنيفاً أولاً من تبويب إدارة التصنيفات —</option>';
+            if (prev && categories.some((c) => c.name === prev && c.name !== 'الكل')) sel.value = prev;
+            else sel.value = '';
             fillAdminSubSelect();
             fillSubParentSelect();
         }
@@ -742,9 +801,9 @@
  
             return `
                 <div class="bg-white rounded-2xl p-3 border border-pink-100 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col h-full relative">
-                    <div class="relative w-full aspect-square rounded-xl overflow-hidden mb-3 bg-pink-50">
+                    <div class="relative w-full aspect-square rounded-xl overflow-hidden mb-3 bg-white">
                         ${badge}
-                        <img src="${esc(p.image || svgFallback)}" alt="${esc(p.name)}" width="380" height="380" loading="lazy" decoding="async" class="img-fade w-full h-full object-contain" onload="this.classList.add('loaded')" onerror="imgErr(this,'prod')">
+                        <img src="${esc(p.image || svgFallback)}" alt="${esc(p.name)}" width="380" height="380" loading="lazy" decoding="async" class="img-fade w-full h-full object-contain bg-white" onload="this.classList.add('loaded')" onerror="imgErr(this,'prod')">
                         <div class="absolute top-2 right-2 bg-white/90 text-pink-600 text-[10px] font-bold px-2 py-1 rounded-md shadow-sm">${esc(p.category)}</div>
                     </div>
                     <h3 class="font-bold text-stone-800 text-sm mb-1 leading-tight min-h-[35px]" title="${esc(p.name)}">${esc(p.name)}</h3>
@@ -943,7 +1002,7 @@
             const total = Math.max(0, subtotal + getShippingFee() - discount);
  
             const b = plain ? '' : '*';
-            let text = `${b}🛍️ طلب جديد من كماليات اثار / شارع40${b}\n\n${b}👤 الزبون:${b} ${name}\n${b}📞 الهاتف:${b} ${phone}\n${b}📍 العنوان:${b} ${prov} - ${area}\n\n${b}🛒 المنتجات:${b}\n`;
+            let text = `${b}🛍️ طلب جديد من كماليات اثار / شارع 40${b}\n\n${b}👤 الزبون:${b} ${name}\n${b}📞 الهاتف:${b} ${phone}\n${b}📍 العنوان:${b} ${prov} - ${area}\n\n${b}🛒 المنتجات:${b}\n`;
             cart.forEach((i) => { text += `▪️ ${i.name} (العدد: ${i.quantity}) - ${(i.price * i.quantity).toLocaleString()} د.ع\n`; });
             if (discount > 0) text += `\n${b}🏷️ الخصم (${storeDiscount.title}):${b} -${discount.toLocaleString()} د.ع`;
             text += `\n${b}💰 الإجمالي الكلي:${b} ${total.toLocaleString()} د.ع`;
@@ -1029,7 +1088,7 @@
             if (!sel) return;
             const subs = subsOf($('p-category').value);
             const prev = typeof selected === 'string' ? selected : sel.value;
-            sel.innerHTML = '<option value="">بدون تصنيف فرعي</option>' +
+            sel.innerHTML = `<option value="">${subs.length ? 'اختر التصنيف الفرعي' : 'لا يوجد تصنيف فرعي'}</option>` +
                 subs.map((s) => `<option value="${esc(s)}">${esc(s)}</option>`).join('');
             sel.value = subs.includes(prev) ? prev : '';
         }
@@ -1087,6 +1146,7 @@
                 closeAdminLoginModal();
                 adminOpen = true;
                 $('admin-dashboard-modal').classList.remove('hidden');
+                switchAdminTab('products');
                 syncScrollLock();
                 renderAdminTables();
                 showDbStatusIfProblem();
@@ -1120,7 +1180,7 @@
             if (!adminOpen) return;
             $('admin-products-table').innerHTML = products.map((p) => `
                 <tr>
-                    <td class="p-3"><img src="${esc(p.image || svgFallback)}" width="40" height="40" loading="lazy" decoding="async" class="w-10 h-10 rounded object-cover bg-stone-100" onerror="imgErr(this,'prod')"></td>
+                    <td class="p-3"><img src="${esc(p.image || svgFallback)}" width="80" height="80" loading="lazy" decoding="async" class="w-20 h-20 rounded-xl object-contain bg-stone-100" onerror="imgErr(this,'prod')"></td>
                     <td class="p-3 font-bold">${esc(p.name)}</td>
                     <td class="p-3">${esc(p.category)}</td>
                     <td class="p-3">${(Number(p.price) || 0).toLocaleString()} د.ع</td>
@@ -1166,32 +1226,45 @@
  
         // يحوّل خلفية الصورة (المتصلة بحوافها الخارجية ومتقاربة اللون) إلى اللون الأبيض تلقائياً،
         // مع ترك المنتج نفسه بدون تغيير (يشتغل زين مع خلفيات الاستديو الموحدة اللون)
-        function whitenBackground(canvas, tolerance = 42) {
+        function whitenBackground(canvas, tolerance = 95) {
             const ctx = canvas.getContext('2d');
             const w = canvas.width, h = canvas.height;
             const imgData = ctx.getImageData(0, 0, w, h);
             const data = imgData.data;
- 
-            const sampleAt = (x, y) => { const i = (y * w + x) * 4; return [data[i], data[i + 1], data[i + 2]]; };
-            const corners = [sampleAt(0, 0), sampleAt(w - 1, 0), sampleAt(0, h - 1), sampleAt(w - 1, h - 1)];
-            const bg = [0, 0, 0];
-            corners.forEach((c) => { bg[0] += c[0] / 4; bg[1] += c[1] / 4; bg[2] += c[2] / 4; });
- 
+
+            // نحول الخلفيات الفاتحة/الرمادية المتصلة بحواف الصورة إلى أبيض،
+            // من دون لمس ألوان المنتج في المنتصف.
+            const isBackgroundPixel = (i) => {
+                const r = data[i], g = data[i + 1], b = data[i + 2], a = data[i + 3];
+                if (a < 20) return true;
+                const max = Math.max(r, g, b), min = Math.min(r, g, b);
+                const brightness = (r + g + b) / 3;
+                const saturation = max - min;
+                return brightness >= 175 && saturation <= 55;
+            };
+
             const visited = new Uint8Array(w * h);
             const queue = [];
-            for (let x = 0; x < w; x++) { queue.push(x); queue.push((h - 1) * w + x); }
-            for (let y = 0; y < h; y++) { queue.push(y * w); queue.push(y * w + (w - 1)); }
- 
+            for (let x = 0; x < w; x++) {
+                queue.push(x, (h - 1) * w + x);
+            }
+            for (let y = 0; y < h; y++) {
+                queue.push(y * w, y * w + (w - 1));
+            }
+
             let qi = 0;
             while (qi < queue.length) {
                 const p = queue[qi++];
                 if (visited[p]) continue;
                 visited[p] = 1;
                 const i = p * 4;
-                const dr = data[i] - bg[0], dg = data[i + 1] - bg[1], db = data[i + 2] - bg[2];
-                if (Math.sqrt(dr * dr + dg * dg + db * db) > tolerance) continue;   // لون مختلف = حافة المنتج، نوقف هنا
- 
-                data[i] = 255; data[i + 1] = 255; data[i + 2] = 255; data[i + 3] = 255;
+                if (!isBackgroundPixel(i)) continue;
+
+                data[i] = 255;
+                data[i + 1] = 255;
+                data[i + 2] = 255;
+                data[i + 3] = 255;
+
                 const x = p % w, y = (p / w) | 0;
                 if (x > 0) queue.push(p - 1);
                 if (x < w - 1) queue.push(p + 1);
@@ -1200,9 +1273,51 @@
             }
             ctx.putImageData(imgData, 0, 0);
         }
- 
+
+        // قص الفراغات البيضاء من أطراف صورة المنتج مع إبقاء المنتج كاملًا.
+        // لا يتم القص إذا لم توجد مساحة بيضاء واضحة حول الصورة.
+        function trimWhiteMargins(canvas, threshold = 245, padding = 12) {
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const data = ctx.getImageData(0, 0, w, h).data;
+            let minX = w, minY = h, maxX = -1, maxY = -1;
+
+            for (let y = 0; y < h; y++) {
+                for (let x = 0; x < w; x++) {
+                    const i = (y * w + x) * 4;
+                    const r = data[i], g = data[i + 1], b = data[i + 2], a = data[i + 3];
+                    // اعتبر البكسل جزءًا من المنتج إذا كان غير شفاف وغير أبيض بوضوح.
+                    if (a > 12 && !(r >= threshold && g >= threshold && b >= threshold)) {
+                        if (x < minX) minX = x;
+                        if (x > maxX) maxX = x;
+                        if (y < minY) minY = y;
+                        if (y > maxY) maxY = y;
+                    }
+                }
+            }
+
+            if (maxX < 0 || maxY < 0) return canvas;
+
+            minX = Math.max(0, minX - padding);
+            minY = Math.max(0, minY - padding);
+            maxX = Math.min(w - 1, maxX + padding);
+            maxY = Math.min(h - 1, maxY + padding);
+
+            const cropW = maxX - minX + 1;
+            const cropH = maxY - minY + 1;
+            // تجنب قص الصور التي لا تحتوي فعليًا على فراغات كبيرة.
+            if (cropW > w * 0.96 && cropH > h * 0.96) return canvas;
+
+            const cropped = document.createElement('canvas');
+            cropped.width = cropW;
+            cropped.height = cropH;
+            const cctx = cropped.getContext('2d', { alpha: true });
+            cctx.drawImage(canvas, minX, minY, cropW, cropH, 0, 0, cropW, cropH);
+            return cropped;
+        }
+
         // تصغير/ضغط الصورة داخل المتصفح قبل الرفع، من دون تحويلها إلى Base64.
-        function compressImageFile(file, { maxDim = 1200, quality = 0.84, whitenBg = false } = {}) {
+        function compressImageFile(file, { maxDim = 1200, quality = 0.84, whitenBg = false, trimWhite = false, squareWhite = false } = {}) {
             return new Promise((resolve, reject) => {
                 const objectUrl = URL.createObjectURL(file);
                 const img = new Image();
@@ -1210,7 +1325,11 @@
 
                 img.onload = () => {
                     try {
-                        let { width, height } = img;
+                        const originalWidth = img.naturalWidth || img.width;
+                        const originalHeight = img.naturalHeight || img.height;
+                        let width = originalWidth;
+                        let height = originalHeight;
+
                         if (width > maxDim || height > maxDim) {
                             if (width > height) {
                                 height = Math.round(height * maxDim / width);
@@ -1221,15 +1340,34 @@
                             }
                         }
 
+                        // صور المنتجات تُحفظ داخل لوحة/متجر على مساحة مربعة بيضاء،
+                        // مع الحفاظ على الصورة كاملة بدون قص أو تمديد.
                         const canvas = document.createElement('canvas');
-                        canvas.width = width;
-                        canvas.height = height;
-                        const ctx = canvas.getContext('2d', { alpha: true });
-                        if (!ctx) throw new Error('canvas-unavailable');
-                        ctx.drawImage(img, 0, 0, width, height);
-                        if (whitenBg) whitenBackground(canvas);
+                        if (squareWhite) {
+                            canvas.width = maxDim;
+                            canvas.height = maxDim;
+                        } else {
+                            canvas.width = width;
+                            canvas.height = height;
+                        }
 
-                        canvas.toBlob((blob) => {
+                        const ctx = canvas.getContext('2d', { alpha: false });
+                        if (!ctx) throw new Error('canvas-unavailable');
+
+                        if (squareWhite) {
+                            ctx.fillStyle = '#ffffff';
+                            ctx.fillRect(0, 0, canvas.width, canvas.height);
+                            const x = Math.round((canvas.width - width) / 2);
+                            const y = Math.round((canvas.height - height) / 2);
+                            ctx.drawImage(img, x, y, width, height);
+                        } else {
+                            ctx.drawImage(img, 0, 0, width, height);
+                            if (whitenBg) whitenBackground(canvas);
+                        }
+
+                        const finalCanvas = trimWhite && !squareWhite ? trimWhiteMargins(canvas) : canvas;
+
+                        finalCanvas.toBlob((blob) => {
                             cleanup();
                             if (!blob) return reject(new Error('image-compression-failed'));
                             resolve({ blob });
@@ -1248,25 +1386,35 @@
             });
         }
 
-        async function ensureStorageReady() {
-            if (!storage || !fbStorage) await initFirebase();
-            if (!storage || !fbStorage) {
-                throw new Error('firebase-storage-not-ready');
+        async function uploadImageToCloudinary(file, folder, options = {}) {
+            if (!CLOUDINARY_CLOUD_NAME || !CLOUDINARY_UPLOAD_PRESET) {
+                throw new Error('cloudinary-config-missing');
             }
-        }
+            if (!file || !file.type.startsWith('image/')) {
+                throw new Error('invalid-image');
+            }
+            if (file.size > 10 * 1024 * 1024) {
+                throw new Error('image-too-large');
+            }
 
-        async function uploadImageToStorage(file, folder, options = {}) {
-            await ensureStorageReady();
             const { blob } = await compressImageFile(file, options);
-            const safeExt = 'jpg';
-            const path = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2, 10)}.${safeExt}`;
-            const storageRef = fbStorage.ref(storage, path);
-            await withTimeout(
-                fbStorage.uploadBytes(storageRef, blob, { contentType: 'image/jpeg', cacheControl: 'public,max-age=31536000' }),
+            const formData = new FormData();
+            formData.append('file', blob, `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.jpg`);
+            formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+            formData.append('folder', `athar/${folder || 'uploads'}`);
+
+            const response = await withTimeout(
+                fetch(CLOUDINARY_UPLOAD_URL, { method: 'POST', body: formData }),
                 30000
             );
-            const url = await withTimeout(fbStorage.getDownloadURL(storageRef), 15000);
-            return { url, path };
+            const data = await response.json();
+
+            if (!response.ok || !data.secure_url) {
+                const message = data?.error?.message || 'cloudinary-upload-failed';
+                throw new Error(message);
+            }
+
+            return { url: data.secure_url, publicId: data.public_id || '' };
         }
 
         async function handleImageFileSelect(e) {
@@ -1277,20 +1425,22 @@
             showImagePreview(localPreview);
             $('p-image-uploading').classList.remove('hidden');
             try {
-                const result = await uploadImageToStorage(file, 'products', { maxDim: 1200, quality: 0.84, whitenBg: false });
+                const result = await uploadImageToCloudinary(file, 'products', { maxDim: 1200, quality: 0.84, whitenBg: false, trimWhite: false, squareWhite: false });
                 $('p-image').value = result.url;
                 showImagePreview(result.url);
-                showToast('تم رفع الصورة إلى Firebase Storage ✓');
+                showToast('تم رفع الصورة إلى Cloudinary ✓');
             } catch (err) {
-                console.error('Firebase Storage product image upload failed:', err);
+                console.error('Cloudinary product image upload failed:', err);
                 $('p-image').value = '';
                 e.target.value = '';
                 resetImagePreview();
-                const msg = err.message === 'firebase-storage-not-ready'
-                    ? 'Firebase Storage غير جاهز. تأكدي من تفعيل Storage وقواعده ثم حاولي مرة أخرى.'
-                    : (err.code === 'storage/unauthorized' || err.code === 'storage/permission-denied')
-                        ? 'تم رفض رفع الصورة. راجعي Firebase Storage Rules واسمحِي للمستخدم المجهول Anonymous بالرفع.'
-                        : 'تعذر رفع الصورة إلى Firebase Storage، جربي صورة أخرى أو تحققي من الاتصال بالإنترنت.';
+                const msg = err.message === 'cloudinary-config-missing'
+                    ? 'إعدادات Cloudinary غير موجودة في الكود.'
+                    : err.message === 'image-too-large'
+                        ? 'حجم الصورة كبير جداً. الحد الأقصى 10MB.'
+                        : err.message === 'invalid-image'
+                            ? 'الملف المختار ليس صورة صالحة.'
+                            : `تعذر رفع الصورة إلى Cloudinary: ${err.message || 'تحققي من الاتصال وإعدادات Upload Preset athar_upload.'}`;
                 showCustomAlert('خطأ في رفع الصورة', msg, true);
             } finally {
                 URL.revokeObjectURL(localPreview);
@@ -1308,20 +1458,20 @@
             const status = $('cat-image-status');
             preview.src = localPreview;
             preview.classList.remove('hidden');
-            status.textContent = 'جارٍ رفع الصورة إلى Firebase Storage...';
+            status.textContent = 'جارٍ رفع الصورة إلى Cloudinary...';
             try {
-                const result = await uploadImageToStorage(file, 'categories', { maxDim: 900, quality: 0.82, whitenBg: false });
+                const result = await uploadImageToCloudinary(file, 'categories', { maxDim: 900, quality: 0.82, whitenBg: false });
                 $('cat-image-input').value = result.url;
                 preview.src = result.url;
                 status.textContent = 'تم رفع الصورة بنجاح ✓';
             } catch (err) {
-                console.error('Firebase Storage category image upload failed:', err);
+                console.error('Cloudinary category image upload failed:', err);
                 $('cat-image-input').value = '';
                 e.target.value = '';
                 preview.src = '';
                 preview.classList.add('hidden');
                 status.textContent = 'تعذر رفع الصورة.';
-                showCustomAlert('خطأ في رفع الصورة', 'تعذر رفع صورة التصنيف إلى Firebase Storage. تأكدي من تفعيل Storage وقواعد الرفع.', true);
+                showCustomAlert('خطأ في رفع الصورة', 'تعذر رفع صورة التصنيف إلى Cloudinary. تأكدي من أن Upload Preset باسم athar_upload مضبوط على Unsigned.', true);
             } finally {
                 URL.revokeObjectURL(localPreview);
                 imageUploadBusy = false;
@@ -1337,20 +1487,20 @@
             const status = $('store-logo-status');
             preview.src = localPreview;
             preview.classList.remove('hidden');
-            status.textContent = 'جارٍ رفع الشعار إلى Firebase Storage...';
+            status.textContent = 'جارٍ رفع الشعار إلى Cloudinary...';
             try {
-                const result = await uploadImageToStorage(file, 'store', { maxDim: 900, quality: 0.84, whitenBg: false });
+                const result = await uploadImageToCloudinary(file, 'store', { maxDim: 900, quality: 0.84, whitenBg: false });
                 $('store-logo-url-input').value = result.url;
                 preview.src = result.url;
                 status.textContent = 'تم رفع الشعار بنجاح ✓';
             } catch (err) {
-                console.error('Firebase Storage logo upload failed:', err);
+                console.error('Cloudinary logo upload failed:', err);
                 $('store-logo-url-input').value = '';
                 e.target.value = '';
                 preview.src = '';
                 preview.classList.add('hidden');
                 status.textContent = 'تعذر رفع الشعار.';
-                showCustomAlert('خطأ في رفع الشعار', 'تعذر رفع الشعار إلى Firebase Storage. تأكدي من تفعيل Storage وقواعد الرفع.', true);
+                showCustomAlert('خطأ في رفع الشعار', 'تعذر رفع الشعار إلى Cloudinary. تأكدي من أن Upload Preset باسم athar_upload مضبوط على Unsigned.', true);
             } finally {
                 URL.revokeObjectURL(localPreview);
                 imageUploadBusy = false;
@@ -1416,6 +1566,26 @@
             showCustomAlert('نتيجة فحص قاعدة البيانات', '', lines.some((l) => l.startsWith('❌')), { steps: lines });
         }
  
+        // تنسيق السعر تلقائياً بفواصل الآلاف أثناء الكتابة: 1000 ← 1,000
+        function formatAdminPrice(value) {
+            const digits = String(value || '').replace(/[^0-9]/g, '');
+            return digits ? Number(digits).toLocaleString('en-US') : '';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const priceInput = $('p-price');
+            if (priceInput) {
+                priceInput.addEventListener('input', (e) => {
+                    const start = e.target.selectionStart;
+                    const oldLength = e.target.value.length;
+                    e.target.value = formatAdminPrice(e.target.value);
+                    const newLength = e.target.value.length;
+                    const pos = Math.max(0, (start || newLength) + (newLength - oldLength));
+                    try { e.target.setSelectionRange(pos, pos); } catch (_) {}
+                });
+            }
+        });
+
         function saveProduct(e) {
             e.preventDefault();
             if (imageUploadBusy) { showCustomAlert('انتظري قليلاً', 'الصورة لسا قيد الرفع، حاولي الحفظ بعد لحظات.', true); return; }
@@ -1423,13 +1593,38 @@
             if (btn) { btn.disabled = true; setTimeout(() => { btn.disabled = false; }, 700); }
  
             const id = $('edit-product-id').value;
+            const category = $('p-category').value.trim();
+            const subcategory = $('p-subcategory').value.trim();
+            const description = $('p-desc').value.trim();
+            const availableSubs = subsOf(category);
+
+            if (!description) {
+                showCustomAlert('اكتب وصف المنتج', 'يجب كتابة وصف المنتج قبل حفظه.', true);
+                $('p-desc').focus();
+                if (btn) btn.disabled = false;
+                return;
+            }
+
+            if (!category) {
+                showCustomAlert('اختر التصنيف', 'يجب اختيار تصنيف للمنتج قبل الحفظ.', true);
+                if (btn) btn.disabled = false;
+                return;
+            }
+
+            if (availableSubs.length && !subcategory) {
+                showCustomAlert('اختر التصنيف الفرعي', 'هذا التصنيف يحتوي على تصنيفات فرعية، لذلك يجب اختيار التصنيف الفرعي قبل حفظ المنتج.', true);
+                $('p-subcategory').focus();
+                if (btn) btn.disabled = false;
+                return;
+            }
+
             const data = {
                 name: $('p-name').value,
-                category: $('p-category').value,
-                subcategory: $('p-subcategory').value,
-                price: parseFloat($('p-price').value),
+                category,
+                subcategory,
+                price: Number(($('p-price').value || '').replace(/,/g, '')) || 0,
                 image: $('p-image').value,
-                description: $('p-desc').value,
+                description,
             };
             if (!id) data.createdAt = Date.now();
  
@@ -1459,7 +1654,7 @@
             $('p-name').value = p.name;
             $('p-category').value = p.category;
             fillAdminSubSelect(p.subcategory || '');
-            $('p-price').value = p.price;
+            $('p-price').value = Number(p.price || 0).toLocaleString('en-US');
             $('p-image').value = p.image;
             showImagePreview(p.image);
             $('p-desc').value = p.description;
@@ -1514,18 +1709,18 @@
         function saveCategory(e) {
             e.preventDefault();
             if (imageUploadBusy) {
-                showCustomAlert('انتظري قليلاً', 'الصورة لسا قيد الرفع إلى Firebase Storage.', true);
+                showCustomAlert('انتظري قليلاً', 'الصورة لسا قيد الرفع إلى Cloudinary.', true);
                 return;
             }
             const image = $('cat-image-input').value.trim();
             if (!image) {
-                showCustomAlert('الصورة مطلوبة', 'اختاري صورة للتصنيف وسيتم رفعها إلى Firebase Storage أولاً.', true);
+                showCustomAlert('الصورة مطلوبة', 'اختاري صورة للتصنيف وسيتم رفعها إلى Cloudinary أولاً.', true);
                 return;
             }
             const maxOrder = categories.reduce((m, c) => Math.max(m, Number(c.order) || 0), 0);
             const data = { name: $('cat-name-input').value.trim(), image, order: maxOrder + 1 };
             if (isOfflineMode || !db) {
-                showCustomAlert('لا يمكن حفظ الصورة الآن', 'رفع الصور يحتاج اتصالاً بـ Firebase Storage. بعد عودة الاتصال أعيدي رفع الصورة ثم احفظي التصنيف.', true);
+                showCustomAlert('لا يمكن حفظ الصورة الآن', 'رفع الصور يحتاج اتصالاً بالإنترنت وCloudinary. أعيدي رفع الصورة ثم احفظي التصنيف.', true);
                 return;
             }
             fb.addDoc(fb.collection(db, 'categories'), data).then(() => {
@@ -1533,7 +1728,7 @@
                 $('cat-image-input').value = '';
                 $('cat-image-preview').src = '';
                 $('cat-image-preview').classList.add('hidden');
-                $('cat-image-status').textContent = 'سيتم رفع الصورة إلى Firebase Storage.';
+                $('cat-image-status').textContent = 'سيتم رفع الصورة إلى Cloudinary.';
                 showToast('تم حفظ التصنيف');
             }).catch(saveError);
         }
@@ -1584,16 +1779,16 @@
         }
         function updateStoreLogo() {
             if (imageUploadBusy) {
-                showCustomAlert('انتظري قليلاً', 'الشعار لسا قيد الرفع إلى Firebase Storage.', true);
+                showCustomAlert('انتظري قليلاً', 'الشعار لسا قيد الرفع إلى Cloudinary.', true);
                 return;
             }
             const url = $('store-logo-url-input').value.trim();
             if (!url) {
-                showCustomAlert('الشعار غير محدد', 'اختاري شعاراً من الجهاز ليتم رفعه إلى Firebase Storage.', true);
+                showCustomAlert('الشعار غير محدد', 'اختاري شعاراً من الجهاز ليتم رفعه إلى Cloudinary.', true);
                 return;
             }
             if (isOfflineMode || !db) {
-                showCustomAlert('لا يمكن حفظ الشعار الآن', 'حفظ رابط الشعار يحتاج اتصالاً بـ Firebase. بعد عودة الاتصال أعيدي حفظ الشعار.', true);
+                showCustomAlert('لا يمكن حفظ الشعار الآن', 'حفظ رابط الشعار يحتاج اتصالاً بـ Firebase. بعد رفع الصورة إلى Cloudinary أعيدي حفظ الشعار.', true);
                 return;
             }
             logoUrl = url;
