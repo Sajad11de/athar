@@ -267,10 +267,7 @@
                     <span>الإجمالي الكلي النهائي:</span>
                     <span id="cart-total-price" class="text-pink-700 text-xl">0 د.ع</span>
                 </div>
-                <div class="grid grid-cols-2 gap-2 mt-2">
-                    <button onclick="checkoutViaWhatsApp()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all duration-200 active:scale-95 shadow-lg shadow-emerald-600/20">
-                        <i class="fa-brands fa-whatsapp text-xl"></i> واتساب
-                    </button>
+                <div class="grid grid-cols-1 gap-2 mt-2">
                     <button onclick="checkoutViaInstagram()" class="w-full text-white py-3.5 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all duration-200 active:scale-95 shadow-lg" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);box-shadow:0 10px 15px -3px rgba(188,24,136,.25)">
                         <i class="fa-brands fa-instagram text-xl"></i> انستكرام
                     </button>
@@ -554,18 +551,13 @@
         /* ================= الإعدادات والأدوات ================= */
         // إعدادات مشروع فايربيس الجديد (athar-e00bf)
         const firebaseConfig = {
-            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  const firebaseConfig = {
-apiKey: "AIzaSyCX8nsfuEYn_tk9i-Wsqfu8Z2cqbUU9_0Y",
-authDomain: "athar3-1a894.firebaseapp.com",
-projectId: "athar3-1a894",
-storageBucket: "athar3-1a894.appspot.com",
-messagingSenderId: "151167824114",
-appId: "1:151167824114:web:e671b879939294d501a06b",
-measurementId: "G-87PKL941RP"
-
-};
+            apiKey: "AIzaSyAx8nsfuEYn_tk9i-Wsqfu8Z2cqbUU9_OY",
+            authDomain: "athar3-1a894.firebaseapp.com",
+            projectId: "athar3-1a894",
+            storageBucket: "athar3-1a894.firebasestorage.app",
+            messagingSenderId: "151167824114",
+            appId: "1:151167824114:web:e671b879939294d501a06b",
+            measurementId: "G-87PKL941RP"
         };
 
         // Cloudinary: رفع الصور مباشرة من جهاز المستخدم بدون Firebase Storage
@@ -1023,7 +1015,7 @@ measurementId: "G-87PKL941RP"
         }
  
         // إتمام الطلب عبر انستكرام: ينسخ تفاصيل الطلب وينبّه الزبونة بضرورة لصقها داخل المحادثة قبل فتح انستكرام
-        const INSTAGRAM_USERNAME = 'athar_cosmetic';
+        const INSTAGRAM_USERNAME = 'athar.40';
         function checkoutViaInstagram() {
             const text = buildOrderText(true);
             if (!text) return;
@@ -1572,7 +1564,7 @@ measurementId: "G-87PKL941RP"
             }
         });
 
-        function saveProduct(e) {
+        async function saveProduct(e) {
             e.preventDefault();
             if (imageUploadBusy) { showCustomAlert('انتظري قليلاً', 'الصورة لسا قيد الرفع، حاولي الحفظ بعد لحظات.', true); return; }
             const btn = e.submitter;
@@ -1614,7 +1606,16 @@ measurementId: "G-87PKL941RP"
             };
             if (!id) data.createdAt = Date.now();
  
-            if (isOfflineMode || !db) {
+            // انتظر تهيئة Firebase وتسجيل الدخول قبل أي كتابة، خصوصاً في أول فتح للموقع.
+            if (!db || !authOk) {
+                try {
+                    await initFirebase();
+                } catch (initErr) {
+                    console.error('Firebase initialization before save failed:', initErr);
+                }
+            }
+
+            if (isOfflineMode || !db || !authOk) {
                 if (id) { const idx = products.findIndex((x) => x.id === id); if (idx > -1) products[idx] = { ...products[idx], id, ...data }; }
                 else products.push({ id: 'p-' + Date.now(), ...data });
                 rebuildIndex();
@@ -1874,7 +1875,7 @@ measurementId: "G-87PKL941RP"
 
             firebasePromise = (async () => {
                 try {
-                    const B = 'https://www.gstatic.com/firebasejs/11.6.1/';
+                    const B = 'https://www.gstatic.com/firebasejs/12.19.0/';
                     const [appM, authM, fsM] = await Promise.all([
                         import(B + 'firebase-app.js'),
                         import(B + 'firebase-auth.js'),
@@ -1894,17 +1895,6 @@ measurementId: "G-87PKL941RP"
                     } catch (cacheErr) {
                         console.warn('Persistent Firestore cache unavailable; using normal Firestore:', cacheErr);
                         db = fsM.getFirestore(app);
-                    }
-
-                    // Storage اختياري عند بدء التشغيل: إذا فشل تحميل الموديول، لا نمنع Firestore من العمل.
-                    try {
-                        const storM = await import(B + 'firebase-storage.js');
-                        fbStorage = storM;
-                        storage = storM.getStorage(app);
-                    } catch (storageErr) {
-                        console.error('Firebase Storage init failed:', storageErr);
-                        fbStorage = null;
-                        storage = null;
                     }
 
                     try {
