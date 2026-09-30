@@ -1080,29 +1080,60 @@
             if (prev) sel.value = prev;
         }
  
-        function updateCategorySubs(cat, subs) {
-            if (isOfflineMode || !db) {
-                cat.subcategories = subs;
+        async function updateCategorySubs(cat, subs) {
+            if (!cat) return false;
+
+            // تحديث النسخة المحلية فوراً مهم جداً: عند إضافة تصنيف فرعي ثانٍ
+            // يجب أن يعتمد الدمج على القائمة الجديدة وليس القائمة القديمة.
+            const cleanSubs = [...new Set((subs || [])
+                .map((x) => String(x || '').trim())
+                .filter((x) => x && x !== 'الكل'))];
+            const previousSubs = Array.isArray(cat.subcategories) ? [...cat.subcategories] : [];
+
+            cat.subcategories = cleanSubs;
+            persist('categories', categories);
+            renderCategories();
+            renderProducts();
+            renderAdminTables();
+
+            if (isOfflineMode || !db || !fb) return true;
+
+            try {
+                await fb.updateDoc(fb.doc(db, 'categories', cat.id), { subcategories: cleanSubs });
+                return true;
+            } catch (err) {
+                // إذا فشل الحفظ في Firestore نرجع الحالة السابقة.
+                cat.subcategories = previousSubs;
                 persist('categories', categories);
                 renderCategories();
                 renderProducts();
                 renderAdminTables();
-            } else {
-                fb.updateDoc(fb.doc(db, 'categories', cat.id), { subcategories: subs }).catch(saveError);
+                saveError(err);
+                return false;
             }
         }
- 
-        function saveSubcategory(e) {
+
+        async function saveSubcategory(e) {
             e.preventDefault();
-            const parent = $('sub-parent-select').value;
-            const names = $('sub-name-input').value.split(/[,،]/).map((x) => x.trim()).filter((x) => x && x !== 'الكل');
+            const parent = $('sub-parent-select').value.trim();
+            const names = $('sub-name-input').value
+                .split(/[,،\n]/)
+                .map((x) => x.trim())
+                .filter((x) => x && x !== 'الكل');
             const cat = categories.find((c) => c.name === parent && c.name !== 'الكل');
-            if (!cat || !names.length) return;
-            updateCategorySubs(cat, [...new Set([...(cat.subcategories || []), ...names])]);
-            $('sub-name-input').value = '';
-            showToast('تم حفظ التصنيف الفرعي');
+            if (!cat || !names.length) {
+                showCustomAlert('تنبيه', 'اكتبي اسماً واحداً على الأقل للتصنيف الفرعي.', true);
+                return;
+            }
+
+            const merged = [...new Set([...(Array.isArray(cat.subcategories) ? cat.subcategories : []), ...names])];
+            const saved = await updateCategorySubs(cat, merged);
+            if (saved) {
+                $('sub-name-input').value = '';
+                showToast(names.length > 1 ? `تم حفظ ${names.length} تصنيفات فرعية ✓` : 'تم حفظ التصنيف الفرعي ✓');
+            }
         }
- 
+
         function deleteSubcategory(catId, name) {
             if (!confirm(`حذف التصنيف الفرعي "${name}"؟ المنتجات المرتبطة به تبقى ظاهرة ضمن التصنيف الرئيسي.`)) return;
             const cat = categories.find((c) => c.id === catId);
