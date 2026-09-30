@@ -562,7 +562,7 @@
 
         // Cloudinary: رفع الصور مباشرة من جهاز المستخدم بدون Firebase Storage
         const CLOUDINARY_CLOUD_NAME = "txrvtnhk";
-        const CLOUDINARY_UPLOAD_PRESET = "athar_upload";
+        const CLOUDINARY_UPLOAD_PRESET = "ml_default";
         const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
  
         const $ = (id) => document.getElementById(id);
@@ -1449,7 +1449,7 @@
                         ? 'حجم الصورة كبير جداً. الحد الأقصى 10MB.'
                         : err.message === 'invalid-image'
                             ? 'الملف المختار ليس صورة صالحة.'
-                            : `تعذر رفع الصورة إلى Cloudinary: ${err.message || 'تحققي من الاتصال وإعدادات Upload Preset athar_upload.'}`;
+                            : `تعذر رفع الصورة إلى Cloudinary: ${err.message || 'تحققي من الاتصال وإعدادات Upload Preset ml_default.'}`;
                 showCustomAlert('خطأ في رفع الصورة', msg, true);
             } finally {
                 URL.revokeObjectURL(localPreview);
@@ -1480,7 +1480,7 @@
                 preview.src = '';
                 preview.classList.add('hidden');
                 status.textContent = 'تعذر رفع الصورة.';
-                showCustomAlert('خطأ في رفع الصورة', 'تعذر رفع صورة التصنيف إلى Cloudinary. تأكدي من أن Upload Preset باسم athar_upload مضبوط على Unsigned.', true);
+                showCustomAlert('خطأ في رفع الصورة', 'تعذر رفع صورة التصنيف إلى Cloudinary. تأكدي من أن Upload Preset باسم ml_default مضبوط على Unsigned.', true);
             } finally {
                 URL.revokeObjectURL(localPreview);
                 imageUploadBusy = false;
@@ -1509,7 +1509,7 @@
                 preview.src = '';
                 preview.classList.add('hidden');
                 status.textContent = 'تعذر رفع الشعار.';
-                showCustomAlert('خطأ في رفع الشعار', 'تعذر رفع الشعار إلى Cloudinary. تأكدي من أن Upload Preset باسم athar_upload مضبوط على Unsigned.', true);
+                showCustomAlert('خطأ في رفع الشعار', 'تعذر رفع الشعار إلى Cloudinary. تأكدي من أن Upload Preset باسم ml_default مضبوط على Unsigned.', true);
             } finally {
                 URL.revokeObjectURL(localPreview);
                 imageUploadBusy = false;
@@ -1550,22 +1550,20 @@
         async function runDiagnostics(btn) {
             if (btn) { btn.disabled = true; btn.textContent = 'جارٍ الفحص...'; }
             const lines = [];
-            try {
-                if (!storage || !fbStorage) await initFirebase();
-                lines.push(storage && fbStorage ? '✅ Firebase Storage جاهز لرفع الصور' : '❌ Firebase Storage غير مهيأ');
-            } catch (e) {
-                lines.push(`❌ تهيئة Firebase Storage فشلت: ${e.code || e.message}`);
-            }
+            try { if (!db || !fb) await initFirebase(); } catch (e) { /* يُعرض الخطأ بالأسطر التالية */ }
+            lines.push(CLOUDINARY_CLOUD_NAME && CLOUDINARY_UPLOAD_PRESET
+                ? `✅ إعدادات Cloudinary موجودة (${CLOUDINARY_CLOUD_NAME} / ${CLOUDINARY_UPLOAD_PRESET})`
+                : '❌ إعدادات Cloudinary ناقصة');
             lines.push(isOfflineMode ? '❌ وضع الأوفلاين (فايربيس غير متصل)' : '✅ تم تحميل فايربيس');
             lines.push(authOk ? '✅ الدخول المجهول (Anonymous) شغال' : `❌ الدخول المجهول فشل: ${authError ? (authError.code || authError.message) : 'لم يكتمل'}`);
             if (db && fb) {
                 try {
                     const snap = await withTimeout(fb.getDocsFromServer(fb.collection(db, 'products')), 12000);
-                    const real = snap.docs.filter((d) => !d.id.startsWith('__'));
+                    const real = snap.docs.filter((d) => !(d.id.startsWith('__') || d.id === 'healthcheck-temp'));
                     lines.push(`✅ قراءة المنتجات من السيرفر شغالة: يوجد ${real.length} منتج فعلياً بقاعدة البيانات (الموقع يعرض ${products.length})`);
                 } catch (e) { lines.push(`❌ قراءة المنتجات من السيرفر فشلت: ${e.code || e.message}`); }
                 try {
-                    const ref = fb.doc(db, 'products', '__healthcheck__');
+                    const ref = fb.doc(db, 'products', 'healthcheck-temp');
                     await withTimeout(fb.setDoc(ref, { ping: Date.now() }), 12000);
                     await withTimeout(fb.deleteDoc(ref), 12000);
                     lines.push('✅ الكتابة والحذف بمجموعة المنتجات مسموحة');
@@ -1998,7 +1996,7 @@
             // على Snapshot محلي قديم وفارغ بعد تفعيل Persistent Cache.
             const applyProductsSnapshot = (snap, source = 'snapshot') => {
                 const list = snap.docs
-                    .filter((d) => !d.id.startsWith('__'))
+                    .filter((d) => !(d.id.startsWith('__') || d.id === 'healthcheck-temp'))
                     .map((d) => ({ id: d.id, ...d.data() }));
 
                 // إذا كان أول Snapshot فارغاً وهو من الكاش المحلي، لا نمسح المنتجات الموجودة
